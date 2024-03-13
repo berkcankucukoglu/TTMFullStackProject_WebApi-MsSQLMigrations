@@ -1,6 +1,8 @@
-﻿namespace TTM.Domain
+﻿using TTM.Domain.Interfaces;
+
+namespace TTM.Domain
 {
-    public class User
+    public class User : IBasePerson
     {
         public User()
         {

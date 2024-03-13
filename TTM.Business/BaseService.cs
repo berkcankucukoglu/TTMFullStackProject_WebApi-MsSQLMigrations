@@ -6,7 +6,7 @@ using TTM.Domain.Interfaces;
 namespace TTM.Business
 {
     public abstract class BaseService<TModel, TEntity> : ICrudService<TModel>
-        where TEntity : class, IBaseEntity, new()
+        where TEntity : class, IIdentity, new()
         where TModel : class, new()
     {
 

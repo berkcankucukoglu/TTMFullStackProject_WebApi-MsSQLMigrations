@@ -1,6 +1,6 @@
 ﻿namespace TTM.Domain.Interfaces
 {
-    public interface IBaseEntity
+    public interface IBaseEntity : IIdentity
     {
         int Id { get; set; }
         string Name { get; set; }
