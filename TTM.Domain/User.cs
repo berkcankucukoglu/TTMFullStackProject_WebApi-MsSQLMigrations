@@ -14,6 +14,7 @@ namespace TTM.Domain
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public Gender? Gender { get; set; }
 
         //NavProps
         public ICollection<Project> Projects { get; set; }

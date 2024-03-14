@@ -61,26 +61,6 @@ namespace TTM.Business
                 return Enumerable.Empty<TModel>();
             }
         }
-        public virtual CommandResult Create(int id)
-        {
-            try
-            {
-                var dbSet = _context.Set<TEntity>();
-                var entity = dbSet.Find(id);
-                if (entity == null)
-                {
-                    return CommandResult.Failure();
-                }
-                dbSet.Remove(entity);
-                _context.SaveChanges();
-                return CommandResult.Success();
-            }
-            catch (Exception ex)
-            {
-                Trace.TraceError(ex.ToString());
-                return CommandResult.Failure();
-            }
-        }
         public virtual CommandResult Create(TModel model)
         {
             try

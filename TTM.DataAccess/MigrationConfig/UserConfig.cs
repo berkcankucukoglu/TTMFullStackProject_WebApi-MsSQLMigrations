@@ -14,8 +14,8 @@ namespace TTM.DataAccess.MigrationConfig
             builder.Property(u => u.LastName).IsRequired(false).IsUnicode().HasMaxLength(256);
             builder.Property(u => u.Email).IsRequired().IsUnicode().HasMaxLength(256);
             builder.Property(u => u.Password).IsRequired().IsUnicode();
+            builder.Property(u=> u.Gender).IsRequired(false).HasColumnType("smallint");
 
-            //Default users for initializing db. There will be no CRUD on this entity.
             builder.HasData(
                 new User
                 {
@@ -23,7 +23,17 @@ namespace TTM.DataAccess.MigrationConfig
                     FirstName = "John",
                     LastName = "Doe",
                     Email = "johndoe@mail.com",
-                    Password = "12345"
+                    Password = "12345",
+                    Gender = Gender.None,
+                },
+                new User
+                {
+                    Id = 2,
+                    FirstName = "Jane",
+                    LastName = "Doe",
+                    Email = "janedoe@mail.com",
+                    Password = "54321",
+                    Gender = Gender.Female,
                 });
         }
     }

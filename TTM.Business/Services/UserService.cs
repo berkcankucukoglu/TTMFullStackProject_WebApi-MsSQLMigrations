@@ -1,4 +1,6 @@
-﻿using TTM.DataAccess;
+﻿using System.Diagnostics;
+using TTM.Business.Validators;
+using TTM.DataAccess;
 using TTM.Domain;
 
 namespace TTM.Business.Services
@@ -14,6 +16,65 @@ namespace TTM.Business.Services
             _mapperConfigurationExpression.CreateMap<ProjectDto, Project>();
             _mapperConfigurationExpression.CreateMap<Duty, DutyDto>();
             _mapperConfigurationExpression.CreateMap<DutyDto, Duty>();
+        }
+
+        private readonly UserValidator _validotar = new UserValidator();
+        public override CommandResult Create(UserDto model)
+        {
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
+            try
+            {
+                var entity = new User();
+                _mapper.Map(model, entity, typeof(UserDto), typeof(User));
+               
+                var validationResult = _validotar.Validate(entity);
+                if (validationResult.HasErrors)
+                {
+                    return CommandResult.Failure(validationResult.ErrorString);
+                }
+                if (entity.Id != null || entity.Projects.Count > 0 || entity.Duties.Count > 0)
+                {
+                    return CommandResult.Error("Record was found! This creation terminated!", new Exception());
+                }
+                _context.Users.Add(entity);
+                _context.SaveChanges();
+                return CommandResult.Success("User created successfully!");
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError($"{DateTime.Now} - {ex}");
+                return CommandResult.Error("User Creation Error!", ex);
+            }
+        }
+        public override CommandResult Update(UserDto model)
+        {
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
+            try
+            {
+                var entity = _context.Users.Find(model.Id);
+                var validationResult = _validotar.Validate(entity);
+                if ( validationResult.HasErrors)
+                {
+                    return CommandResult.Failure(validationResult.ErrorString);
+                }
+                if (entity == null)
+                {
+                    return CommandResult.Error("Record was not found!", new Exception());
+                }
+                entity.Projects.Clear();
+                entity.Duties.Clear();
+                _mapper.Map(model, entity, typeof(UserDto), typeof(User));
+                _context.Users.Update(entity);
+                _context.SaveChanges();
+                return CommandResult.Success("User updated successfully!");
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError($"{DateTime.Now} - {ex}");
+                return CommandResult.Error("User Update Error!", ex);
+            }
         }
     }
 }

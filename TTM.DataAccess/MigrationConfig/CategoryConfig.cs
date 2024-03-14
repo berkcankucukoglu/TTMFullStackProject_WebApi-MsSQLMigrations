@@ -13,7 +13,6 @@ namespace TTM.DataAccess.MigrationConfig
             builder.Property(c => c.Name).IsRequired().IsUnicode().HasMaxLength(256);
             builder.Property(c => c.Description).IsRequired(false).IsUnicode().HasMaxLength(256);
             
-            //Default categories for initializing db. There will be no CRUD on this entity.
             builder.HasData(
                 new Category
                 {

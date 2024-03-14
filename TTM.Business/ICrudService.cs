@@ -10,10 +10,9 @@ namespace TTM.Business
     {
         TModel GetById(int id);
         IEnumerable<TModel> GetAll();
-        CommandResult Create(int id);
         CommandResult Create(TModel model);
         CommandResult Update(TModel model);
-        CommandResult Delete(int id);
         CommandResult Delete(TModel model);
+        CommandResult Delete(int id);
     }
 }
