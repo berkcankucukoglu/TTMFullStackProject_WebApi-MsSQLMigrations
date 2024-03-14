@@ -20,7 +20,13 @@ namespace TTM.Business.Services
         public override CommandResult Create(CategoryDto model)
         {
             if (model == null)
+            {
                 throw new ArgumentNullException(nameof(model));
+            }
+            if (model.Id != null || model.Projects.Count > 0)
+            {
+                return CommandResult.Error("Some other record was found about this category! This creation terminated!", new Exception());
+            }
             try
             {
                 var entity = new Category();
@@ -30,10 +36,6 @@ namespace TTM.Business.Services
                 if (validationResult.HasErrors)
                 {
                     return CommandResult.Failure(validationResult.ErrorString);
-                }
-                if (entity.Id != null || entity.Projects.Count > 0)
-                {
-                    return CommandResult.Error("Record was found! This creation terminated!", new Exception());
                 }
                 _context.Categories.Add(entity);
                 _context.SaveChanges();

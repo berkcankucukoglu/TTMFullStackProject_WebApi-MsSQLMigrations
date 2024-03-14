@@ -34,6 +34,10 @@ namespace TTM.Business
             try
             {
                 var entity = _context.Set<TEntity>().Find(id);
+                if (entity == null)
+                {
+                    return null;
+                }
                 return _mapper.Map<TModel>(entity);
             }
             catch (Exception ex)

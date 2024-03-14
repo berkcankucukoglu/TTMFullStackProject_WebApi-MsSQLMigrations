@@ -15,7 +15,13 @@ namespace TTM.Business.Services
         public override CommandResult Create(DutyDto model)
         {
             if (model == null)
+            {
                 throw new ArgumentNullException(nameof(model));
+            }
+            if (model.Id != null)
+            {
+                return CommandResult.Error("Some other record was found about this duty! This creation terminated!", new Exception());
+            }
             try
             {
                 var entity = new Duty();
@@ -25,10 +31,6 @@ namespace TTM.Business.Services
                 if (validationResult.HasErrors)
                 {
                     return CommandResult.Failure(validationResult.ErrorString);
-                }
-                if (entity.Id != null)
-                {
-                    return CommandResult.Error("Record was found! This creation terminated!", new Exception());
                 }
                 _context.Duties.Add(entity);
                 _context.SaveChanges();

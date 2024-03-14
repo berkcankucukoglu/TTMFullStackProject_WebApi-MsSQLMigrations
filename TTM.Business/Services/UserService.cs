@@ -10,7 +10,7 @@ namespace TTM.Business.Services
         public UserService(TTMContext ttmContext) : base(ttmContext)
         {
         }
-        static UserService() 
+        static UserService()
         {
             _mapperConfigurationExpression.CreateMap<Project, ProjectDto>();
             _mapperConfigurationExpression.CreateMap<ProjectDto, Project>();
@@ -22,20 +22,22 @@ namespace TTM.Business.Services
         public override CommandResult Create(UserDto model)
         {
             if (model == null)
+            {
                 throw new ArgumentNullException(nameof(model));
+            }
+            if (model.Id != null || model.Projects.Count > 0 || model.Duties.Count > 0)
+            {
+                return CommandResult.Error("Some other record was found about this user! This creation terminated!", new Exception());
+            }
             try
             {
                 var entity = new User();
                 _mapper.Map(model, entity, typeof(UserDto), typeof(User));
-               
+
                 var validationResult = _validotar.Validate(entity);
                 if (validationResult.HasErrors)
                 {
                     return CommandResult.Failure(validationResult.ErrorString);
-                }
-                if (entity.Id != null || entity.Projects.Count > 0 || entity.Duties.Count > 0)
-                {
-                    return CommandResult.Error("Record was found! This creation terminated!", new Exception());
                 }
                 _context.Users.Add(entity);
                 _context.SaveChanges();
@@ -55,7 +57,7 @@ namespace TTM.Business.Services
             {
                 var entity = _context.Users.Find(model.Id);
                 var validationResult = _validotar.Validate(entity);
-                if ( validationResult.HasErrors)
+                if (validationResult.HasErrors)
                 {
                     return CommandResult.Failure(validationResult.ErrorString);
                 }
