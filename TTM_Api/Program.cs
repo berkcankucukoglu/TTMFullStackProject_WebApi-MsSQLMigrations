@@ -1,14 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using TTM.DataAccess;
+using System.Diagnostics;
+using TTM.Business;
+using TTM;
+using TTM.Business.Services;
 
 /*
 It writes the trace warnings I wrote in services with flush and produces an ErrorLogs.txt file in the project file.
 It overwrites the ErrorLogs.txt file if it already exists or creates it if not.
 */
-using System.Diagnostics;
-using TTM.Business;
-using TTM;
-using TTM.Business.Services;
 Trace.Listeners.Add(new TextWriterTraceListener("ErrorLogs.txt"));
 Trace.AutoFlush = true;
 
@@ -28,6 +28,9 @@ builder.Services.AddDbContext<TTMContext>(options => {
 
 builder.Services.AddTransient<TTMContext>();
 builder.Services.AddTransient<ICrudService<UserDto>, UserService>();
+builder.Services.AddTransient<ICrudService<CategoryDto>, CategoryService>();
+builder.Services.AddTransient<ICrudService<ProjectDto>, ProjectService>();
+builder.Services.AddTransient<ICrudService<DutyDto>, DutyService>();
 
 var app = builder.Build();
 

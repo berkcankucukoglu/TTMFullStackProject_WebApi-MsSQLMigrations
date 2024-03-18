@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections;
-using TTM;
 using TTM.Business;
+using TTM;
 
 namespace TTM_Api.Controllers
 {
@@ -16,13 +15,13 @@ namespace TTM_Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable GetUsers()
+        public IEnumerable<UserDto> GetAllUsers()
         {
             return _service.GetAll();
         }
 
         [HttpGet("{id}")]
-        public UserDto GetUser(int id)
+        public UserDto GetAUser(int id)
         {
             return _service.GetById(id);
         }
@@ -43,8 +42,8 @@ namespace TTM_Api.Controllers
         [HttpDelete("{id}")]
         public CommandResult Delete(int id)
         {
-            var recipeDto = new UserDto() { Id = id };
-            return _service.Delete(recipeDto);
+            var userDto = new UserDto() { Id = id };
+            return _service.Delete(userDto);
         }
     }
 }

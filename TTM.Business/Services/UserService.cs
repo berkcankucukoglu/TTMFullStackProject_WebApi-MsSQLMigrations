@@ -48,7 +48,7 @@ namespace TTM.Business.Services
                 Trace.TraceError($"{DateTime.Now} - {ex}");
                 return CommandResult.Error("User Creation Error!", ex);
             }
-        }
+        } 
         public override CommandResult Update(UserDto model)
         {
             if (model == null)

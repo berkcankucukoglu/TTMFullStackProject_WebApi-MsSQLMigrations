@@ -238,3 +238,46 @@ Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core
 Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT [u].[Id], [u].[Email], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[Password]
 FROM [User] AS [u]
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:7044
+Microsoft.Hosting.Lifetime: Information: Now listening on: http://localhost:5265
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (31ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[Id], [u].[Email], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[Password]
+FROM [User] AS [u]
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (39ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[Password]
+FROM [User] AS [u]
+WHERE [u].[Id] = @__p_0
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[Password]
+FROM [User] AS [u]
+WHERE [u].[Id] = @__p_0
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[Id], [u].[Email], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[Password]
+FROM [User] AS [u]
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[Password]
+FROM [User] AS [u]
+WHERE [u].[Id] = @__p_0
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[Password]
+FROM [User] AS [u]
+WHERE [u].[Id] = @__p_0
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (3ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (Size = 256), @p1='?' (Size = 256), @p2='?' (DbType = Int16), @p3='?' (Size = 256), @p4='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [User] SET [Email] = @p0, [FirstName] = @p1, [Gender] = @p2, [LastName] = @p3, [Password] = @p4
+WHERE [Id] = @p5;
+SELECT @@ROWCOUNT;
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[Password]
+FROM [User] AS [u]
+WHERE [u].[Id] = @__p_0
