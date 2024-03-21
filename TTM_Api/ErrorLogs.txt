@@ -281,3 +281,49 @@ Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand 
 SELECT TOP(1) [u].[Id], [u].[Email], [u].[FirstName], [u].[Gender], [u].[LastName], [u].[Password]
 FROM [User] AS [u]
 WHERE [u].[Id] = @__p_0
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:7044
+Microsoft.Hosting.Lifetime: Information: Now listening on: http://localhost:5265
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:7044
+Microsoft.Hosting.Lifetime: Information: Now listening on: http://localhost:5265
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:5555
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:5555
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:7777
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:7777
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:7777
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (49ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:7777
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (29ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
