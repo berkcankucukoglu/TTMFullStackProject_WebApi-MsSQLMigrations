@@ -327,3 +327,77 @@ Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core
 Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT [c].[Id], [c].[Description], [c].[Name]
 FROM [Category] AS [c]
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:7777
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:7777
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:7777
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.Hosting.Lifetime: Information: Now listening on: http://localhost:7777
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware: Warning: Failed to determine the https port for redirect.
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (32ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
+Microsoft.Hosting.Lifetime: Information: Now listening on: http://localhost:7777
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\berkc\source\repos\TinyTaskManagerFullStackApp\BackendWebApı_SQLMigrations\FullStackProject_Api&Migrations\TTM_Api\
+Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware: Warning: Failed to determine the https port for redirect.
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (35ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (38ms) [Parameters=[@p0='?' (Size = 256), @p1='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Category] ([Description], [Name])
+VALUES (@p0, @p1);
+SELECT [Id]
+FROM [Category]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 256), @p1='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Category] ([Description], [Name])
+VALUES (@p0, @p1);
+SELECT [Id]
+FROM [Category]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+Microsoft.EntityFrameworkCore.Infrastructure: Information: Entity Framework Core 6.0.27 initialized 'TTMContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.27' with options: None
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Category] AS [c]
