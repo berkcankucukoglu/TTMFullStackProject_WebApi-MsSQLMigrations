@@ -31,6 +31,7 @@ namespace TTM.Business.Services
             {
                 var entity = new Project();
                 _mapper.Map(model, entity, typeof(ProjectDto), typeof(Project));
+                entity.CreatedDate = DateTime.Now;
 
                 var validationResult = _validotar.Validate(entity);
                 if (validationResult.HasErrors)

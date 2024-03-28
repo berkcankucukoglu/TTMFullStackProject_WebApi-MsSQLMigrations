@@ -26,6 +26,7 @@ namespace TTM.Business.Services
             {
                 var entity = new Duty();
                 _mapper.Map(model, entity, typeof(DutyDto), typeof(Duty));
+                entity.CreatedDate = DateTime.Now;
 
                 var validationResult = _validotar.Validate(entity);
                 if (validationResult.HasErrors)

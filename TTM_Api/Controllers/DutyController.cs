@@ -45,5 +45,11 @@ namespace TTM_Api.Controllers
             var dutyDto = new DutyDto() { Id = id };
             return _service.Delete(dutyDto);
         }
+
+        [HttpGet("project/{id}")]
+        public DutyDto[] GetProjectDuties(int id)
+        {
+            return _service.GetAll().Where(d => d.ProjectId == id).ToArray();
+        }
     }
 }
