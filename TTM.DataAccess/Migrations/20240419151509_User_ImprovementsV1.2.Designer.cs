@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TTM.DataAccess;
 
@@ -11,9 +12,10 @@ using TTM.DataAccess;
 namespace TTM.DataAccess.Migrations
 {
     [DbContext(typeof(TTMContext))]
-    partial class TTMContextModelSnapshot : ModelSnapshot
+    [Migration("20240419151509_User_ImprovementsV1.2")]
+    partial class User_ImprovementsV12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

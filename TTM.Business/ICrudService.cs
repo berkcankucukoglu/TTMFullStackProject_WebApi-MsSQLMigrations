@@ -14,5 +14,6 @@ namespace TTM.Business
         CommandResult Update(TModel model);
         CommandResult Delete(TModel model);
         CommandResult Delete(int id);
+        CommandResult RecordExists(TModel model);
     }
 }

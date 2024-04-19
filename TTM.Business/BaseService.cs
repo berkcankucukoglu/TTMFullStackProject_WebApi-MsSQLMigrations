@@ -132,5 +132,22 @@ namespace TTM.Business
                 return CommandResult.Error(ex);
             }
         }
+        public virtual CommandResult RecordExists(TModel model)
+        {
+            try
+            {
+                var entity = _mapper.Map<TEntity>(model);
+                if (entity == null)
+                {
+                    return null;
+                }
+                return CommandResult.Success();
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+                return CommandResult.Error(ex);
+            }
+        }
     }
 }

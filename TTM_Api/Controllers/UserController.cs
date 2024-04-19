@@ -45,5 +45,11 @@ namespace TTM_Api.Controllers
             var userDto = new UserDto() { Id = id };
             return _service.Delete(userDto);
         }
+
+        [HttpPost("Authenticate")]
+        public CommandResult Authenticate([FromBody] UserDto userDto)
+        {
+            return _service.RecordExists(userDto);
+        }
     }
 }

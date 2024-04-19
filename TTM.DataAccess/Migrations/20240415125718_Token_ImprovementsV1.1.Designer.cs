@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TTM.DataAccess;
 
@@ -11,9 +12,10 @@ using TTM.DataAccess;
 namespace TTM.DataAccess.Migrations
 {
     [DbContext(typeof(TTMContext))]
-    partial class TTMContextModelSnapshot : ModelSnapshot
+    [Migration("20240415125718_Token_ImprovementsV1.1")]
+    partial class Token_ImprovementsV11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -209,7 +211,7 @@ namespace TTM.DataAccess.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(8193)
+                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Token")
@@ -217,9 +219,6 @@ namespace TTM.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
 
                     b.ToTable("User", (string)null);
 
@@ -231,8 +230,7 @@ namespace TTM.DataAccess.Migrations
                             FirstName = "John",
                             Gender = (short)0,
                             LastName = "Doe",
-                            Password = "12345",
-                            Token = ""
+                            Password = "12345"
                         },
                         new
                         {
@@ -241,8 +239,7 @@ namespace TTM.DataAccess.Migrations
                             FirstName = "Jane",
                             Gender = (short)2,
                             LastName = "Doe",
-                            Password = "54321",
-                            Token = ""
+                            Password = "54321"
                         });
                 });
 

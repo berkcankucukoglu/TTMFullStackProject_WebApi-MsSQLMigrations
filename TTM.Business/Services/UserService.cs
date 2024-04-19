@@ -27,7 +27,11 @@ namespace TTM.Business.Services
             }
             if (model.Id != null || model.Projects.Count > 0 || model.Duties.Count > 0)
             {
-                return CommandResult.Error("Some other record was found about this user! This creation terminated!", new Exception());
+                return CommandResult.Error("Some records were found about this user! This creation has been canceled.", new Exception());
+            }
+            if (_context.Users.Any(u => u.Email == model.Email))
+            {
+                return CommandResult.Error("The email address is already in use! This creation has been canceled.", new Exception());
             }
             try
             {
@@ -39,6 +43,10 @@ namespace TTM.Business.Services
                 {
                     return CommandResult.Failure(validationResult.ErrorString);
                 }
+
+                entity.Password = PasswordHasher.HashPassword(entity.Password);
+                entity.Token = string.Empty;
+
                 _context.Users.Add(entity);
                 _context.SaveChanges();
                 return CommandResult.Success("User created successfully!");
@@ -48,7 +56,7 @@ namespace TTM.Business.Services
                 Trace.TraceError($"{DateTime.Now} - {ex}");
                 return CommandResult.Error("User Creation Error!", ex);
             }
-        } 
+        }
         public override CommandResult Update(UserDto model)
         {
             if (model == null)
@@ -76,6 +84,31 @@ namespace TTM.Business.Services
             {
                 Trace.TraceError($"{DateTime.Now} - {ex}");
                 return CommandResult.Error("User Update Error!", ex);
+            }
+        }
+        public override CommandResult RecordExists(UserDto model)
+        {
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
+            try
+            {
+                var entity = _context.Users.FirstOrDefault(u => u.Email == model.Email);
+                if (entity == null)
+                {
+                    return CommandResult.Failure("User record was not found!");
+                }
+                if (!PasswordHasher.VerifyPassword(model.Password, entity.Password))
+                {
+                    return CommandResult.Failure("Password is incorrect!");
+                }
+
+                _mapper.Map(entity, model, typeof(User), typeof(UserDto));
+                return CommandResult.Success("User record is found successfully!");
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError($"{DateTime.Now} - {ex}");
+                return CommandResult.Error("User record search Error!", ex);
             }
         }
     }

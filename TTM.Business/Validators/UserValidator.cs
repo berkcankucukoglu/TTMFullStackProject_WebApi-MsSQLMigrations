@@ -1,4 +1,5 @@
-﻿using TTM.Domain;
+﻿using System.Text.RegularExpressions;
+using TTM.Domain;
 
 namespace TTM.Business.Validators
 {
@@ -27,6 +28,18 @@ namespace TTM.Business.Validators
             {
                 validationResult.AddError("Password cannot be empty!");
             }
+            //else if (user.Password.Length < 6)
+            //{
+            //    validationResult.AddError("Password cannot be less than 6 characters!");
+            //}
+            //else if (!(Regex.IsMatch(user.Password, "[a-z]") && Regex.IsMatch(user.Password, "[A-Z]") && Regex.IsMatch(user.Password, "[0-9]")))
+            //{
+            //    validationResult.AddError("Password should be Alphanumeric!");
+            //}
+            //else if (!(Regex.IsMatch(user.Password, "[<, >, !, @, #, $, %, ^, &, *, (, ), -, _, =, +, [, ], {, }, |, ;, :, ,, ., /, ?]")))
+            //{
+            //    validationResult.AddError("Password should contain special characters!");
+            //}
             return validationResult;
         }
     }
