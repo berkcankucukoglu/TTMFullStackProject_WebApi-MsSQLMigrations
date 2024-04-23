@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TTM.Business;
 using TTM;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TTM_Api.Controllers
 {
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DutyController : ControllerBase
@@ -15,9 +17,9 @@ namespace TTM_Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<DutyDto> GetDuties()
+        public IEnumerable<DutyDto> GetDuties([FromHeader] string Authorization)
         {
-            return _service.GetAll();
+            return _service.GetAllByUserToken(Authorization);
         }
 
         [HttpGet("{id}")]
@@ -44,6 +46,12 @@ namespace TTM_Api.Controllers
         {
             var dutyDto = new DutyDto() { Id = id };
             return _service.Delete(dutyDto);
+        }
+
+        [HttpDelete("Project/{id}")]
+        public CommandResult DeleteProjectDuties(int id)
+        {
+            return _service.WipeProjectDuties(id);
         }
 
         [HttpGet("Project/{id}")]

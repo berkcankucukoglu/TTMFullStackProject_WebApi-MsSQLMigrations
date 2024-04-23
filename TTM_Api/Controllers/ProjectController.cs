@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TTM.Business;
 using TTM;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TTM_Api.Controllers
 {
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ProjectController : ControllerBase
@@ -15,9 +17,10 @@ namespace TTM_Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ProjectDto> GetProjects()
+        public IEnumerable<ProjectDto> GetProjects([FromHeader] string Authorization)
         {
-            return _service.GetAll();
+
+            return _service.GetAllByUserToken(Authorization);
         }
 
         [HttpGet("{id}")]

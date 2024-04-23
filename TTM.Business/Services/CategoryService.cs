@@ -75,5 +75,24 @@ namespace TTM.Business.Services
                 return CommandResult.Error("Category Update Error!", ex);
             }
         }
+        public override List<CategoryDto> GetAllByUserToken(string? token)
+        {
+            try
+            {
+                var dtoList = new List<CategoryDto>();
+                var allEntities = _context.Categories.Where(c => c.UserId == 2010 || c.UserId == null);
+                foreach (var entity in allEntities)
+                {
+                    var dto = _mapper.Map<CategoryDto>(entity);
+                    dtoList.Add(dto);
+                }
+                return dtoList;
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+                return new List<CategoryDto>();
+            }
+        }
     }
 }

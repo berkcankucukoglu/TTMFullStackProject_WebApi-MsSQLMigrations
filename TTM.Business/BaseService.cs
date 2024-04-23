@@ -52,7 +52,7 @@ namespace TTM.Business
             {
                 var dtoList = new List<TModel>();
                 var allEntities = _context.Set<TEntity>().ToList();
-                foreach ( var entity in allEntities )
+                foreach (var entity in allEntities)
                 {
                     var dto = _mapper.Map<TModel>(entity);
                     dtoList.Add(dto);
@@ -149,5 +149,31 @@ namespace TTM.Business
                 return CommandResult.Error(ex);
             }
         }
+        public virtual IEnumerable<TModel> GetAllByUserToken(string? token)
+        {
+            //From token, get user information and return requested data
+            try
+            {
+                return new List<TModel>();
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+                return Enumerable.Empty<TModel>();
+            }
+        }
+        public virtual CommandResult WipeProjectDuties(int id)
+        {
+            try
+            {
+                return CommandResult.Failure("Override this method as required.");
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+                return CommandResult.Error(ex);
+            }
+        }
+
     }
 }

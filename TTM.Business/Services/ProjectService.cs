@@ -76,5 +76,27 @@ namespace TTM.Business.Services
                 return CommandResult.Error("Project Update Error!", ex);
             }
         }
+        public override List<ProjectDto> GetAllByUserToken(string? token)
+        {
+            if (token == null)
+                return new List<ProjectDto>();
+
+            try
+            {
+                var dtoList = new List<ProjectDto>();
+                var allEntities = _context.Projects.Where(p => p.UserId == 2010);
+                foreach (var entity in allEntities)
+                {
+                    var dto = _mapper.Map<ProjectDto>(entity);
+                    dtoList.Add(dto);
+                }
+                return dtoList;
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+                return new List<ProjectDto>();
+            }
+        }
     }
 }

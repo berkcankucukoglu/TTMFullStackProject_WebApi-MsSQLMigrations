@@ -18,7 +18,7 @@ namespace TTM.Business
         public bool IsSuccess { get; private set; }
         public string? Message { get; private set; }
         public string? ErrorMessage { get; private set; }
-
+        public string? Token { get; private set; }
 
         internal static CommandResult Success(string message)
         {
@@ -29,6 +29,18 @@ namespace TTM.Business
                 ErrorMessage = string.Empty
             };
         }
+
+        internal static CommandResult Success(string message, string token)
+        {
+            return new CommandResult
+            {
+                IsSuccess = true,
+                Message = message,
+                ErrorMessage = string.Empty,
+                Token = token
+            };
+        }
+
         internal static CommandResult Failure(string message)
         {
             return new CommandResult()

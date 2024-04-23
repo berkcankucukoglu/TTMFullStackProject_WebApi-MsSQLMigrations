@@ -18,29 +18,8 @@ namespace TTM.DataAccess.MigrationConfig
 
             builder.Property(u => u.Password).IsRequired().HasMaxLength(8193); ;
             builder.Property(u => u.Gender).IsRequired(false).HasColumnType("smallint");
+            builder.Property(u => u.Role).IsRequired().HasColumnType("smallint");
             builder.Property(u => u.Token).IsRequired(false).HasMaxLength(8193);
-
-            builder.HasData(
-                new User
-                {
-                    Id = 1,
-                    FirstName = "John",
-                    LastName = "Doe",
-                    Email = "johndoe@mail.com",
-                    Password = "12345",
-                    Gender = Gender.None,
-                    Token = ""
-                },
-                new User
-                {
-                    Id = 2,
-                    FirstName = "Jane",
-                    LastName = "Doe",
-                    Email = "janedoe@mail.com",
-                    Password = "54321",
-                    Gender = Gender.Female,
-                    Token = ""
-                }); ;
         }
     }
 }

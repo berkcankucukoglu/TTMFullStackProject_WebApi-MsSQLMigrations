@@ -70,5 +70,50 @@ namespace TTM.Business.Services
                 return CommandResult.Error("Duty Update Error!", ex);
             }
         }
+        public override List<DutyDto> GetAllByUserToken(string? token)
+        {
+            try
+            {
+                var dtoList = new List<DutyDto>();
+                var allEntities = _context.Duties.Where(p => p.UserId == 2010);
+                foreach (var entity in allEntities)
+                {
+                    var dto = _mapper.Map<DutyDto>(entity);
+                    dtoList.Add(dto);
+                }
+                return dtoList;
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+                return new List<DutyDto>();
+            }
+        }
+        public override CommandResult WipeProjectDuties(int id)
+        {
+            try
+            {
+                var allEntities = _context.Duties.Where(p => p.ProjectId == id).ToList();
+                if (allEntities.Count > 0)
+                {
+                    foreach (var entity in allEntities)
+                    {
+                        _context.Remove(entity);
+                    }
+                    _context.SaveChanges();
+                    return CommandResult.Success();
+                }
+                else
+                {
+                    return CommandResult.Failure();
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+                return CommandResult.Error(ex);
+            }
+        }
+
     }
 }

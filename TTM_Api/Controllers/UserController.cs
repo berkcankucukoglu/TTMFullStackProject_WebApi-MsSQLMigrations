@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TTM.Business;
 using TTM;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TTM_Api.Controllers
 {
@@ -14,24 +15,28 @@ namespace TTM_Api.Controllers
             _service = crudService;
         }
 
+        [Authorize]
         [HttpGet]
         public IEnumerable<UserDto> GetAllUsers()
         {
             return _service.GetAll();
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public UserDto GetAUser(int id)
         {
             return _service.GetById(id);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public CommandResult Create([FromBody] UserDto userDto)
         {
             return _service.Create(userDto);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public CommandResult Update(int id, [FromBody] UserDto userDto)
         {
@@ -39,6 +44,7 @@ namespace TTM_Api.Controllers
             return _service.Update(userDto);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public CommandResult Delete(int id)
         {
@@ -46,6 +52,7 @@ namespace TTM_Api.Controllers
             return _service.Delete(userDto);
         }
 
+        [AllowAnonymous]
         [HttpPost("Authenticate")]
         public CommandResult Authenticate([FromBody] UserDto userDto)
         {

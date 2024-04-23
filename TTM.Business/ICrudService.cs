@@ -10,10 +10,12 @@ namespace TTM.Business
     {
         TModel GetById(int id);
         IEnumerable<TModel> GetAll();
+        IEnumerable<TModel> GetAllByUserToken(string? token);
         CommandResult Create(TModel model);
         CommandResult Update(TModel model);
         CommandResult Delete(TModel model);
         CommandResult Delete(int id);
         CommandResult RecordExists(TModel model);
+        CommandResult WipeProjectDuties(int id);
     }
 }

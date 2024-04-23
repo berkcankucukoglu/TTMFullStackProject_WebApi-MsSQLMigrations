@@ -1,4 +1,8 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using TTM.Business.Validators;
 using TTM.DataAccess;
 using TTM.Domain;
@@ -19,6 +23,7 @@ namespace TTM.Business.Services
         }
 
         private readonly UserValidator _validotar = new UserValidator();
+        private readonly JwtUtilities _jwtUtilities = new JwtUtilities();
         public override CommandResult Create(UserDto model)
         {
             if (model == null)
@@ -102,8 +107,12 @@ namespace TTM.Business.Services
                     return CommandResult.Failure("Password is incorrect!");
                 }
 
+                entity.Token = _jwtUtilities.CreateJwt(entity);
+                _context.Users.Update(entity);
+                _context.SaveChanges();
+
                 _mapper.Map(entity, model, typeof(User), typeof(UserDto));
-                return CommandResult.Success("User record is found successfully!");
+                return CommandResult.Success(model.Id.ToString(), model.Token);
             }
             catch (Exception ex)
             {

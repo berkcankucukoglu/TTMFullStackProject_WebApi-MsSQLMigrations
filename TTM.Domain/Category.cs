@@ -12,6 +12,11 @@ namespace TTM.Domain
         public string Name { get; set; }
         public string? Description { get; set; }
 
+        //NavProps
+        public int? UserId { get; set; }
+        public User? User { get; set; }
+
         public ICollection<Project> Projects { get; set; }
+
     }
 }
