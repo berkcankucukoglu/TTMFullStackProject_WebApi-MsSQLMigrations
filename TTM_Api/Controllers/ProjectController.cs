@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace TTM_Api.Controllers
 {
-    //[Authorize]
+
     [ApiController]
     [Route("api/[controller]")]
     public class ProjectController : ControllerBase
@@ -16,6 +16,7 @@ namespace TTM_Api.Controllers
             _service = crudService;
         }
 
+        [Authorize]
         [HttpGet]
         public IEnumerable<ProjectDto> GetProjects([FromHeader] string Authorization)
         {
@@ -23,18 +24,21 @@ namespace TTM_Api.Controllers
             return _service.GetAllByUserToken(Authorization);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public ProjectDto GetAProject(int id)
         {
             return _service.GetById(id);
         }
 
+        [Authorize]
         [HttpPost]
-        public CommandResult Create([FromBody] ProjectDto projectDto)
+        public CommandResult Create([FromBody] ProjectDto projectDto, [FromHeader] string Authorization)
         {
-            return _service.Create(projectDto);
+            return _service.CreateByUserToken(projectDto, Authorization);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public CommandResult Update(int id, [FromBody] ProjectDto projectDto)
         {
@@ -42,6 +46,7 @@ namespace TTM_Api.Controllers
             return _service.Update(projectDto);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public CommandResult Delete(int id)
         {

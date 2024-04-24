@@ -12,6 +12,7 @@ namespace TTM.Business
         IEnumerable<TModel> GetAll();
         IEnumerable<TModel> GetAllByUserToken(string? token);
         CommandResult Create(TModel model);
+        CommandResult CreateByUserToken(TModel model, string? token);
         CommandResult Update(TModel model);
         CommandResult Delete(TModel model);
         CommandResult Delete(int id);

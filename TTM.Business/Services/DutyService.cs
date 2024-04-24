@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 using TTM.Business.Validators;
 using TTM.DataAccess;
 using TTM.Domain;
@@ -74,8 +77,9 @@ namespace TTM.Business.Services
         {
             try
             {
+                var userEntity = GetUserEntityFromToken(token);
                 var dtoList = new List<DutyDto>();
-                var allEntities = _context.Duties.Where(p => p.UserId == 2010);
+                var allEntities = _context.Duties.Where(p => p.UserId == userEntity.Id);
                 foreach (var entity in allEntities)
                 {
                     var dto = _mapper.Map<DutyDto>(entity);
@@ -114,6 +118,69 @@ namespace TTM.Business.Services
                 return CommandResult.Error(ex);
             }
         }
+        public override CommandResult CreateByUserToken(DutyDto model, string token)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+            if (model.Id != null)
+            {
+                return CommandResult.Error("Some other record was found about this duty! This creation terminated!", new Exception());
+            }
+            try
+            {
+                var userEntity = GetUserEntityFromToken(token);
+                var entity = new Duty();
+                _mapper.Map(model, entity, typeof(DutyDto), typeof(Duty));
+                entity.UserId = userEntity.Id;
+                entity.CreatedDate = DateTime.Now;
 
+                var validationResult = _validotar.Validate(entity);
+                if (validationResult.HasErrors)
+                {
+                    return CommandResult.Failure(validationResult.ErrorString);
+                }
+                _context.Duties.Add(entity);
+                _context.SaveChanges();
+                return CommandResult.Success("Duty created successfully!");
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError($"{DateTime.Now} - {ex}");
+                return CommandResult.Error("Duty Creation Error!", ex);
+            }
+        }
+
+        private User GetUserEntityFromToken(string token)
+        {
+            token = token.Substring(7);
+            var jwtTokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes("veryverysecret.....veryverysecret.....");
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = false,
+            };
+
+            SecurityToken securityToken;
+            var principal = jwtTokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
+            var jwtSecurityToken = securityToken as JwtSecurityToken;
+            if (jwtSecurityToken == null)
+            {
+                throw new SecurityTokenException("This is Invalid Token");
+            }
+            var emailClaim = jwtSecurityToken.Claims.FirstOrDefault(claim => claim.Type == "email");
+            var emailValue = string.Empty;
+            if (emailClaim != null)
+            {
+                emailValue = emailClaim.Value;
+            }
+            var user = _context.Users.FirstOrDefault(u => u.Email == emailValue && u.Token == token);
+            return user;
+        }
     }
 }

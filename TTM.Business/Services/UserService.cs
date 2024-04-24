@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using TTM.Business.Validators;
 using TTM.DataAccess;
@@ -23,14 +24,13 @@ namespace TTM.Business.Services
         }
 
         private readonly UserValidator _validotar = new UserValidator();
-        private readonly JwtUtilities _jwtUtilities = new JwtUtilities();
         public override CommandResult Create(UserDto model)
         {
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
-            if (model.Id != null || model.Projects.Count > 0 || model.Duties.Count > 0)
+            if (model.Id != null)
             {
                 return CommandResult.Error("Some records were found about this user! This creation has been canceled.", new Exception());
             }
@@ -107,18 +107,38 @@ namespace TTM.Business.Services
                     return CommandResult.Failure("Password is incorrect!");
                 }
 
-                entity.Token = _jwtUtilities.CreateJwt(entity);
+                entity.Token = CreateJwtToken(entity);
                 _context.Users.Update(entity);
                 _context.SaveChanges();
 
-                _mapper.Map(entity, model, typeof(User), typeof(UserDto));
-                return CommandResult.Success(model.Id.ToString(), model.Token);
+                return CommandResult.Success("User record found and authenticated.", entity.Token);
             }
             catch (Exception ex)
             {
                 Trace.TraceError($"{DateTime.Now} - {ex}");
                 return CommandResult.Error("User record search Error!", ex);
             }
+        }
+
+        private string CreateJwtToken(User user)
+        {
+            var jwtTokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes("veryverysecret.....veryverysecret.....");
+            var identity = new ClaimsIdentity(new Claim[]
+            {
+                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+                new Claim(ClaimTypes.Role, user.Role == 0 ? "User" : "Admin" ),
+                new Claim(ClaimTypes.Email, user.Email)
+            });
+            var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
+            var descriptor = new SecurityTokenDescriptor
+            {
+                Subject = identity,
+                Expires = DateTime.Now.AddHours(8),
+                SigningCredentials = credentials
+            };
+            var token = jwtTokenHandler.CreateToken(descriptor);
+            return jwtTokenHandler.WriteToken(token);
         }
     }
 }

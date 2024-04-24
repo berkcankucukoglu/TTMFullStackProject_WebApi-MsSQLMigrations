@@ -80,6 +80,18 @@ namespace TTM.Business
                 return CommandResult.Error(ex);
             }
         }
+        public virtual CommandResult CreateByUserToken(TModel model, string token)
+        {
+            try
+            {
+                return CommandResult.Failure("Override this method as required.");
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+                return CommandResult.Error(ex);
+            }
+        }
         public virtual CommandResult Update(TModel model)
         {
             try
